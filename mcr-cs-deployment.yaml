@@ -1,0 +1,184 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  annotations:
+    alpha.image.policy.openshift.io/resolve-names: '*'
+    deployment.kubernetes.io/revision: '4'
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"textanalytics-language:latest","namespace":"mcr-cognitive-services-demo"},"fieldPath":"spec.template.spec.containers[?(@.name==\"ta-language\")].image","pause":"false"}]
+    openshift.io/generated-by: OpenShiftWebConsole
+  selfLink: /apis/apps/v1/namespaces/mcr-cognitive-services-demo/deployments/ta-language
+  resourceVersion: '5077889'
+  name: ta-language
+  uid: 5cdbe16f-541f-4793-86ec-c283f275385c
+  creationTimestamp: '2021-09-17T00:42:08Z'
+  generation: 4
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: apps/v1
+      time: '2021-09-17T00:45:53Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:alpha.image.policy.openshift.io/resolve-names': {}
+            'f:image.openshift.io/triggers': {}
+            'f:openshift.io/generated-by': {}
+          'f:labels':
+            'f:app.openshift.io/runtime': {}
+            'f:app': {}
+            'f:app.kubernetes.io/name': {}
+            .: {}
+            'f:app.kubernetes.io/part-of': {}
+            'f:app.openshift.io/runtime-version': {}
+            'f:app.openshift.io/runtime-namespace': {}
+            'f:app.kubernetes.io/instance': {}
+            'f:app.kubernetes.io/component': {}
+        'f:spec':
+          'f:progressDeadlineSeconds': {}
+          'f:replicas': {}
+          'f:revisionHistoryLimit': {}
+          'f:selector': {}
+          'f:strategy':
+            'f:rollingUpdate':
+              .: {}
+              'f:maxSurge': {}
+              'f:maxUnavailable': {}
+            'f:type': {}
+          'f:template':
+            'f:metadata':
+              'f:annotations':
+                .: {}
+                'f:openshift.io/generated-by': {}
+              'f:labels':
+                .: {}
+                'f:app': {}
+                'f:deploymentconfig': {}
+            'f:spec':
+              'f:containers':
+                'k:{"name":"ta-language"}':
+                  'f:image': {}
+                  'f:terminationMessagePolicy': {}
+                  .: {}
+                  'f:resources': {}
+                  'f:args': {}
+                  'f:terminationMessagePath': {}
+                  'f:imagePullPolicy': {}
+                  'f:ports':
+                    .: {}
+                    'k:{"containerPort":5000,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:protocol': {}
+                  'f:name': {}
+              'f:dnsPolicy': {}
+              'f:restartPolicy': {}
+              'f:schedulerName': {}
+              'f:securityContext': {}
+              'f:terminationGracePeriodSeconds': {}
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: apps/v1
+      time: '2021-09-17T01:17:42Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:deployment.kubernetes.io/revision': {}
+        'f:status':
+          'f:availableReplicas': {}
+          'f:conditions':
+            .: {}
+            'k:{"type":"Available"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Progressing"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+          'f:observedGeneration': {}
+          'f:readyReplicas': {}
+          'f:replicas': {}
+          'f:updatedReplicas': {}
+  namespace: mcr-cognitive-services-demo
+  labels:
+    app: ta-language
+    app.kubernetes.io/component: ta-language
+    app.kubernetes.io/instance: ta-language
+    app.kubernetes.io/name: textanalytics-language
+    app.kubernetes.io/part-of: ta-language
+    app.openshift.io/runtime: dotnet
+    app.openshift.io/runtime-namespace: mcr-cognitive-services-demo
+    app.openshift.io/runtime-version: latest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ta-language
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ta-language
+        deploymentconfig: ta-language
+      annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+    spec:
+      containers:
+        - name: ta-language
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/mcr-cognitive-services-demo/textanalytics-language@sha256:b01cf99401e70f4da94d8c7ee7cad4142b6d9d5a1f4f332a8821e74c69825bef
+          args:
+            - eula=accept
+            - apikey=6eb8de93b94e47d28626ec8961e53e08
+            - 'billing=https://ta-container-demo.cognitiveservices.azure.com/'
+          ports:
+            - containerPort: 5000
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+status:
+  observedGeneration: 4
+  replicas: 1
+  updatedReplicas: 1
+  readyReplicas: 1
+  availableReplicas: 1
+  conditions:
+    - type: Available
+      status: 'True'
+      lastUpdateTime: '2021-09-17T01:17:42Z'
+      lastTransitionTime: '2021-09-17T01:17:42Z'
+      reason: MinimumReplicasAvailable
+      message: Deployment has minimum availability.
+    - type: Progressing
+      status: 'True'
+      lastUpdateTime: '2021-09-17T01:17:42Z'
+      lastTransitionTime: '2021-09-17T00:42:08Z'
+      reason: NewReplicaSetAvailable
+      message: ReplicaSet "ta-language-65697754b4" has successfully progressed.
+

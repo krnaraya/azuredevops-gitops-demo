@@ -1,0 +1,4 @@
+resources:
+- mcr-cs-deployment.yaml
+- mcr-cs-service.yaml
+- mcr-cs-route.yaml
