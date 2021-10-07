@@ -23,7 +23,7 @@ spec:
       containers:
         - name: language-detection-service
           image: >-
-            image-registry.openshift-image-registry.svc:5000/mcr-cognitive-services-demo/textanalytics-language:latest
+            image-registry.openshift-image-registry.svc:5000/argocd-demo/textanalytics-language:latest
           args:
             - eula=accept
             - apikey=6eb8de93b94e47d28626ec8961e53e08

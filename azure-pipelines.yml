@@ -14,6 +14,6 @@ steps:
   displayName: 'Run a one-line script'
 - task: vsix-argocd-task@1
   inputs:
-    argocdApplication: 'spring-petclinic'
+    argocdApplication: 'language-detection-service'
     argocdCommand: 'sync'
     ArgoCDService: 'openshift-gitops-connection'
