@@ -23,7 +23,7 @@ spec:
       containers:
         - name: language-detection-service
           image: >-
-            image-registry.openshift-image-registry.svc:5000/mcr-cognitive-services-demo/textanalytics-language@sha256:b01cf99401e70f4da94d8c7ee7cad4142b6d9d5a1f4f332a8821e74c69825bef
+            image-registry.openshift-image-registry.svc:5000/mcr-cognitive-services-demo/textanalytics-language:latest
           args:
             - eula=accept
             - apikey=6eb8de93b94e47d28626ec8961e53e08
@@ -31,3 +31,5 @@ spec:
           ports:
             - containerPort: 5000
               protocol: TCP
+          securityContext:
+            runAsUser: 0
